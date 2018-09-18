@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load thread_extras %}
+{% load staticfiles %}
+{% block content %}
+   {% load bootstrap_tags %}
+
+
+ {% block head_js %}
+    <script type="text/javascript" src="{% static 'js/myScript.js' %}"></script>
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Courgette|Fredoka+One|Permanent+Marker" rel="stylesheet">
+{% endblock %}
+
+
+<div class="col-md-12">
+
+
+
+<h2 style="text-align:center;">Welcome to our forum</h2><br/>
+
+<h3><p>Find out if your car made it on the Auto Express 2018 best car list!!!</p></h3>
+
+<p><a class="btn btn-info" role="button" type="button" onclick="myCarFunction()"><i class="fa fa-automobile"></i> Click here!</a></p>
+
+   <p id="bestCar"></p>&nbsp
+</div>
+
+
+
+
+   {% for subject in subjects %}
+   
+       <section class="subject">
+           <h2><a href="{% url "threads" subject.id %}">{{ subject.name }}</a></h2>
+           <p>
+               <a href="{% url "threads" subject.id %}" id="desc">
+                   {% autoescape off %}{{ subject.description }}{% endautoescape %}
+               </a>
+           </p>
+           <table>
+               <tr>
+                   <th>THREADS&nbsp</th>
+                   <th> POSTS</th>
+            
+               </tr>
+               <tr>
+                   <td>{{ subject.threads.count }}</td>
+                   <td>{{ subject|get_total_subject_posts }}</td>
+               </tr>
+           </table>
+       </section>
+   {% endfor %}
+{% endblock %}
+</div>

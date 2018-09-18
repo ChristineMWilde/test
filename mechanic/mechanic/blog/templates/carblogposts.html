@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+ 
+{% block head_js %}
+  <script src="https://js.stripe.com/v2/" type="text/javascript"></script>
+  <script type="text/javascript"></script>
+  <script type="text/javascript" src="{% static 'js/my_script.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'css/font-awesome-5.3.1/css/fontawesome.css' %}">
+  <link href="https://fonts.googleapis.com/css?family=Courgette|Fredoka+One|Permanent+Marker" rel="stylesheet">
+ {% endblock %}
+
+
+  
+{% block content %}
+<h2 style="text-align:center;">Welcome to our blog</h2><br/>
+    {% for post in posts %}
+  
+        <div class="row">
+         
+            <div class="col-md-2 col-sm-3 text-center">
+               <!-- <a href="#">-->
+                    <img src="{% static 'images/logo.jpg' %}" id="car" class="motor" style="width: 80px; height: 80px;" />
+                <!--</a>-->
+            </div>
+
+            <div class="col-md-10 col-sm-9">
+                <p><h3>{{ post.title }}</h3></p>
+                <div class="row">
+                    <div class="col-xs-9">
+                        <p>{{ post.content|truncatewords:30 }}</p>
+                        <p><button class="btn btn-info" onclick="location.href={{ post.id }}">Read More</button></p><button class="btn btn-info" onclick="location.href='{% url 'new_post' %}'">New Post</button>
+                        </p>
+                        <p>{{ post.published_date }} | <strong>Views</strong> {{ post.views }} | <strong>Tag</strong> {{ post.tag }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

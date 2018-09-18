@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load bootstrap_tags %}
+{% load staticfiles %}
+
+{% block content %}
+    <form role="form" method="post" id="mechanic-form" action="{% url 'login' %}">
+        <h3>Login</h3>
+        {% csrf_token %}
+        {{ form| as_bootstrap }}
+        <div class="form-group">
+            <button type="submit" class="btn btn-info"><i class="fa fa-automobile"></i> Login</button>
+        </div>
+    </form>
+{% endblock %}

@@ -1,5 +1,5 @@
 $(function() {
-  $("#register-form").submit(function() {
+  $("#mechanic-form").submit(function() {
       var form = this;   
       var card = {
         number:   $("#id_credit_card_number").val(),
